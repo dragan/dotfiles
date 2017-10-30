@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Grab the Base16 Shell color scripts
+# https://github.com/chriskempson/base16-shell
+if [[ ! -d "$HOME/.config/base16-shell" ]]; then
+  git clone https://github.com/chriskempson/base16-shell.git \
+    "$HOME/.config/base16-shell"
+fi
+
+# Grab Pure Prompt
+# https://github.com/sindresorhus/pure
+if [[ ! -d "$HOME/.config/pure" ]]; then
+  git clone https://github.com/sindresorhus/pure.git \
+    "$HOME/.config/pure"
+
+  # Based on convention, install the pure functions
+  if [[ ! -d "$HOME/.local/share/zsh/functions" ]]; then
+    mkdir -p "$HOME/.local/share/zsh/functions"
+  fi
+
+  if [[ ! -L "$HOME/.local/share/zsh/functions/prompt_pure_setup" ]]; then
+    ln -s "$HOME/.config/pure/pure.zsh" "$HOME/.local/share/zsh/functions/prompt_pure_setup"
+  fi
+
+  if [[ ! -L "$HOME/.local/share/zsh/functions/async" ]]; then
+    ln -s "$HOME/.config/pure/async.zsh" "$HOME/.local/share/zsh/functions/async"
+  fi
+fi

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Remove Base16 Shell color scripts
+if [[ -d "$HOME/.config/base16-shell" ]]; then
+  rm -rf "$HOME/.config/base16-shell"
+fi
+
+# Remove Pure Prompt
+if [[ -L "$HOME/.local/share/zsh/functions/prompt_pure_setup" ]]; then
+  rm -rf  "$HOME/.local/share/zsh/functions/prompt_pure_setup"
+fi
+
+if [[ -L "$HOME/.local/share/zsh/functions/async" ]]; then
+   rm -rf "$HOME/.local/share/zsh/functions/async"
+fi
+
+if [[ -d "$HOME/.config/pure" ]]; then
+  rm -rf "$HOME/.config/pure"
+fi
