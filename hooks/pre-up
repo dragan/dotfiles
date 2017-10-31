@@ -26,3 +26,9 @@ if [[ ! -d "$HOME/.config/pure" ]]; then
     ln -s "$HOME/.config/pure/async.zsh" "$HOME/.local/share/zsh/functions/async"
   fi
 fi
+
+# Grab Tmux Plugin Manager
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+  git clone https://github.com/tmux-plugins/tpm.git \
+    "$HOME/.tmux/plugins/tpm"
+fi

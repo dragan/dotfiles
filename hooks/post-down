@@ -17,3 +17,8 @@ fi
 if [[ -d "$HOME/.config/pure" ]]; then
   rm -rf "$HOME/.config/pure"
 fi
+
+# Remove Tmux Plugins
+if [[ -d "$HOME/.tmux" ]]; then
+  rm -rf "$HOME/.tmux"
+fi
