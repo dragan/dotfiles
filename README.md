@@ -19,12 +19,16 @@ Install
 
 Clone onto your laptop:
 
-    git clone git://github.com/dragan/dotfiles.git $HOME/.dotfiles
+```
+$ git clone git://github.com/dragan/dotfiles.git $HOME/.dotfiles
+```
 
 1. Install [rcm](https://github.com/thoughtbot/rcm).
 2. Install the dotfiles using rcm:
 
-    env RCRC=$HOME/.dotfiles/rcrc rcup
+```
+$ RCRC=$HOME/.dotfiles/rcrc rcup
+```
 
 This command will create symlinks for config files in your home directory.
 Setting the `RCRC` environment variable tells `rcup` to use standard
@@ -37,7 +41,15 @@ configuration options:
 
 You can safely run `rcup` multiple times to update:
 
-    rcup
+```
+$ rcup
+```
+
+You also easily remove your dotfiles by running:
+
+```
+$ rcdn
+```
 
 Thanks
 ------
@@ -51,7 +63,8 @@ reason I didn't fork is due to not being a Ruby developer.
 License
 -------
 
-Released under the [MIT License][mit-license]. See [LICENSE][license] for more information.
+Released under the [MIT License][mit-license]. See [LICENSE][license] for more
+information.
 
 [mit-license]: http://www.opensource.org/licenses/mit-license.php
 [license]: https://github.com/dragan/dotfiles/blob/master/LICENSE
