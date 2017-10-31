@@ -44,3 +44,6 @@ _load_settings() {
   fi
 }
 _load_settings "$HOME/.zsh/configs"
+
+# Aliases
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"

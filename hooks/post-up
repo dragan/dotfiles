@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Install vim plugins with Plug
+if [[ -f "$HOME/.local/share/nvim/site/autoload/plug.vim" ]]; then
+  nvim -E -s +PlugUpgrade +qa
+fi
+
+nvim -u "$HOME/.vimrc.bundles" +PlugUpdate +PlugClean! +qa
