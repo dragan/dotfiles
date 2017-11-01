@@ -51,6 +51,34 @@ You also easily remove your dotfiles by running:
 $ rcdn
 ```
 
+Terminal Theme
+--------------
+
+I use [base16-shell][base16-shell] to set my terminal theme and sometimes my
+preference on theme varies. Therefore, after you run rcup and relaunch your
+terminal, you will need to set your theme. You will only have to do this once.
+
+The maintainers of base16 have put together a [nice page][base16] to view the
+different themes.
+
+To set a theme, in your new terminal, start typing `base16` followed by a tab
+to perform tab completion. You should be greeted with quite a few `base16_`
+options. For instance, if I wanted to set my theme to `default-dark`, I would
+type:
+
+```
+$ base16_default-dark
+```
+
+The result of the command will create three things:
+
+1. `.base16_theme` file in your `$HOME` directory
+2. `BASE16_THEME` environment variable
+3. `.vimrc_background` for using within vim to set the theme
+
+[base16-shell]: https://github.com/chriskempson/base16-shell
+[base16]: https://chriskempson.github.io/base16/
+
 Thanks
 ------
 

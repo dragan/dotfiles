@@ -5,6 +5,16 @@ if [[ -d "$HOME/.config/base16-shell" ]]; then
   rm -rf "$HOME/.config/base16-shell"
 fi
 
+# Remove base16 Theme
+if [[ -L "$HOME/.base16_theme" ]]; then
+  rm -rf "$HOME/.base16_theme"
+fi
+
+# Remove base16_background
+if [[ -f "$HOME/.vimrc_background" ]]; then
+  rm -rf "$HOME/.vimrc_background"
+fi
+
 # Remove Pure Prompt
 if [[ -L "$HOME/.local/share/zsh/functions/prompt_pure_setup" ]]; then
   rm -rf  "$HOME/.local/share/zsh/functions/prompt_pure_setup"

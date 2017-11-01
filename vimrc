@@ -63,9 +63,12 @@ endif
 syntax enable
 set t_Co=256
 
-set background=dark
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-default-dark
+" .vimrc_background is created by base16-shell
+if filereadable(expand("~/.vimrc_background"))
+  set background=dark
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " open help vertically
 command! -nargs=* -complete=help Help vertical belowright help <args>
