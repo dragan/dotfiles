@@ -47,3 +47,8 @@ _load_settings "$HOME/.zsh/configs"
 
 # Aliases
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+
+# Load direnv
+if command -v "direnv" > /dev/null 2>&1 ; then
+  eval "$(direnv hook zsh)"
+fi
