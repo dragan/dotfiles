@@ -18,28 +18,28 @@ set autoindent
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
-set mouse=a                     "Enable mouse mode
+set mouse=a                     " Enable mouse mode
 
-set noerrorbells             " No beeps
-set number                   " Show line numbers
-set showcmd                  " Show me what I'm typing
-set noswapfile               " Don't use swapfile
-set nobackup                 " Don't create annoying backup files
-set splitright               " Split vertical windows right to the current windows
-set splitbelow               " Split horizontal windows below to the current windows
-set autowrite                " Automatically save before :next, :make etc.
+set noerrorbells                " No beeps
+set number                      " Show line numbers
+set showcmd                     " Show me what I'm typing
+set noswapfile                  " Don't use swapfile
+set nobackup                    " Don't create annoying backup files
+set splitright                  " Split vertical windows right to the current windows
+set splitbelow                  " Split horizontal windows below to the current windows
+set autowrite                   " Automatically save before :next, :make etc.
 set hidden
-set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
-set noshowmatch              " Do not show matching brackets by flickering
-set noshowmode               " We show the mode with airline or lightline
-set ignorecase               " Search case insensitive...
-set smartcase                " ... but not it begins with upper case 
+set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
+set noshowmatch                 " Do not show matching brackets by flickering
+set noshowmode                  " We show the mode with airline or lightline
+set ignorecase                  " Search case insensitive...
+set smartcase                   " ... but not it begins with upper case 
 set completeopt=menu,menuone
-set nocursorcolumn           " speed up syntax highlighting
+set nocursorcolumn              " speed up syntax highlighting
 set nocursorline
 set updatetime=300
 
-set pumheight=10             " Completion window max size
+set pumheight=10                " Completion window max size
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -371,9 +371,9 @@ augroup END
 " ==================== CtrlP ====================
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_switch_buffer = 'et'  " jump to a file if it's open already
-let g:ctrlp_mruf_max=450    " number of recently opened files
-let g:ctrlp_max_files=0     " do not limit the number of searchable files
+let g:ctrlp_switch_buffer = 'et'     " jump to a file if it's open already
+let g:ctrlp_mruf_max=450             " number of recently opened files
+let g:ctrlp_max_files=0              " do not limit the number of searchable files
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
