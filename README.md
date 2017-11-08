@@ -14,20 +14,39 @@ Set zsh as your login shell:
 
     chsh -s $(which zsh)
 
+Close your terminal and launch again, if `zsh` indicates that a zshrc file is
+missing, just press `q`.
+
 Install
 -------
 
-Clone onto your laptop:
+Verify the following are installed for your OS `command -v [command]`:
+
+1. [git][git]
+2. [rcm][rcm]
+3. [tmux][tmux]
+4. [neovim][neovim]
+5. [ag][ag]
+6. [tig][tig]
+
+[git]: https://git-scm.com/
+[rcm]: https://github.com/thoughtbot/rcm/
+[tmux]: https://github.com/tmux/tmux/
+[neovim]: https://neovim.io/
+[ag]: https://geoff.greer.fm/ag/
+[tig]: https://jonas.github.io/tig/
+
+Once you've verfied the above are installed, clone this repository to your
+machine:
 
 ```
 $ git clone git://github.com/dragan/dotfiles.git $HOME/.dotfiles
 ```
 
-1. Install [rcm](https://github.com/thoughtbot/rcm).
-2. Install the dotfiles using rcm:
+Install the dotfiles using rcup which is a part of rcm:
 
 ```
-$ RCRC=$HOME/.dotfiles/rcrc rcup
+$ RCRC=$HOME/.dotfiles/rcrc rcup -v
 ```
 
 This command will create symlinks for config files in your home directory.
@@ -42,13 +61,13 @@ configuration options:
 You can safely run `rcup` multiple times to update:
 
 ```
-$ rcup
+$ rcup -v
 ```
 
-You also easily remove your dotfiles by running:
+You can also easily remove your dotfiles by running:
 
 ```
-$ rcdn
+$ rcdn -v
 ```
 
 Terminal Theme
@@ -78,6 +97,27 @@ The result of the command will create three things:
 
 [base16-shell]: https://github.com/chriskempson/base16-shell
 [base16]: https://chriskempson.github.io/base16/
+
+Tmux Plugins
+------------
+
+Inside tmux, I use the [Tmux Plugin Manager (tpm)][tpm] to install and manage
+additional plugins. To install them, launch tmux and then use the following key
+combo:
+
+```
+Ctrl + s
+Shift + i
+```
+
+[tpm]: https://github.com/tmux-plugins/tpm
+
+Vim Plugins
+-----------
+
+Vim plugins are managed with [Plug][plug].
+
+[plug]: https://github.com/junegunn/vim-plug
 
 Thanks
 ------
