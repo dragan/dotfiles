@@ -1,11 +1,5 @@
-ragan does dotfiles
+Nick's Dotfiles
 ===================
-
-dotfiles
---------
-
-Your dotfiles are how you personalize your system. These are my dotfiles. There
-are many like them, but these are mine.
 
 Requirements
 ------------
@@ -122,11 +116,10 @@ Vim plugins are managed with [Plug][plug].
 Thanks
 ------
 
-Thank you, [thoughtbot][thoughtbot], this repository was heavily inspired
-by their project. I liked their organization and installation method. The only
-reason I didn't fork is due to not being a Ruby developer.
+This dotfiles repo was originally forked from [@dragan](@dragan) and has 
+been tweaked for my particular preferences.
 
-[thoughtbot]: https://github.com/thoughtbot/dotfiles
+[@dragan]: https://github.com/dragan/dotfiles
 
 License
 -------
