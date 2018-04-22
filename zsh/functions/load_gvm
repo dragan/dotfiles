@@ -1,0 +1,6 @@
+# Allows for manually running Go Version Manager (gvm)
+# https://github.com/moovweb/gvm
+
+load_gvm() {
+  [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+}

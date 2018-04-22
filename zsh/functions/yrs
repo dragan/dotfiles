@@ -1,0 +1,12 @@
+# Run a node project using yarn with a specified NODE_ENV
+
+yrs() {
+    local env="$1"
+
+    if [ "$env" == '' ]; then
+        env='rqa3'
+    fi
+
+    export NODE_ENV="$env"
+    yarn run start
+}
