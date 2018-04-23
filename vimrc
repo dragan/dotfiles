@@ -184,7 +184,7 @@ set statusline+=\ %*
 " This comes first, because we have mappings that depend on leader
 " With a map leader it's possible to do extra key combinations
 " i.e: <leader>w saves the current file
-let mapleader = ","
+let mapleader="\<SPACE>"
 
 " Some useful quickfix shortcuts for quickfix
 map <C-n> :cn<CR>
