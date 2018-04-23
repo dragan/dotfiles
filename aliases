@@ -6,6 +6,10 @@
 alias l='ls --color=always -Aoh --time-style=long-iso'
 alias ls='ls --color=always'
 
+## Editor
+alias vim='nvim'
+alias vi='nvim'
+
 ## Random
 alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias zshconfig="nvim ~/.zshrc"
