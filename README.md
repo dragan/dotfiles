@@ -36,7 +36,7 @@ Once you've verfied the above are installed, clone this repository to your
 machine:
 
 ```
-$ git clone https://github.com/ncronquist/dotfiles.git $HOME/.dotfiles
+$ git clone git@github.com:ncronquist/dotfiles.git $HOME/.dotfiles
 ```
 
 Install the dotfiles using rcup which is a part of rcm:
