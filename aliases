@@ -3,7 +3,8 @@
 #===============================================================================
 
 ## Shell Commands
-alias l='ls -Aoh --time-style=long-iso'
+alias l='ls --color=always -Aoh --time-style=long-iso'
+alias ls='ls --color=always'
 
 ## Random
 alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
