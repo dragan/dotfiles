@@ -1,0 +1,1 @@
+export CONCUR_REQUEST_SECRETS="$HOME/.secrets/concur_request_secrets.json"
