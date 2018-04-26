@@ -5,3 +5,5 @@ tags
 tmp/**/*
 !tmp/cache/.keep
 node_modules
+.envrc
+.env
