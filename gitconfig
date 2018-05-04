@@ -13,3 +13,6 @@
   prune = true
 [rebase]
   autosquash = true
+[user]
+	email = nick.cronquist@sap.com
+	name = Nick Cronquist
