@@ -35,5 +35,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-scriptease'
 Plug 'mileszs/ack.vim'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()

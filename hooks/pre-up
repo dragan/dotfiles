@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# Grab the Base16 Shell color scripts
-# https://github.com/chriskempson/base16-shell
-if [[ ! -d "$HOME/.config/base16-shell" ]]; then
-  git clone https://github.com/chriskempson/base16-shell.git \
-    "$HOME/.config/base16-shell"
+# Grap Nova iTerm Theme
+# https://trevordmiller.com/projects/nova
+if [[ ! -f "$HOME/.iterm/themes/nova.itermcolors" ]]; then
+  curl -fLo $HOME/.iterm/themes/nova.itermcolors --create-dirs \
+    https://raw.githubusercontent.com/trevordmiller/nova-iterm/master/build/nova.itermcolors
 fi
 
 # Grab Pure Prompt
@@ -24,6 +24,38 @@ if [[ ! -d "$HOME/.config/pure" ]]; then
 
   if [[ ! -L "$HOME/.local/share/zsh/functions/async" ]]; then
     ln -s "$HOME/.config/pure/async.zsh" "$HOME/.local/share/zsh/functions/async"
+  fi
+fi
+
+# Grab zsh-history-substring-search
+# https://github.com/zsh-users/zsh-history-substring-search
+if [[ ! -d "$HOME/.config/zsh-history-substring-search" ]]; then
+  git clone git@github.com:zsh-users/zsh-history-substring-search.git \
+    "$HOME/.config/zsh-history-substring-search"
+
+  # Based on convention, install the zsh history substring search
+  if [[ ! -d "$HOME/.local/share/zsh/functions" ]]; then
+    mkdir -p "$HOME/.local/share/zsh/functions"
+  fi
+
+  if [[ ! -L "$HOME/.local/share/zsh/functions/zsh-history-substring-search" ]]; then
+    ln -s "$HOME/.config/zsh-history-substring-search/zsh-history-substring-search.zsh" "$HOME/.local/share/zsh/functions/zsh-history-substring-search"
+  fi
+fi
+
+# Grab zsh-syntax-highlighting
+# https://github.com/zsh-users/zsh-syntax-highlighting
+if [[ ! -d "$HOME/.config/zsh-syntax-highlighting" ]]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+    "$HOME/.config/zsh-syntax-highlighting"
+
+  # Based on convention, install the zsh history substring search
+  if [[ ! -d "$HOME/.local/share/zsh/functions" ]]; then
+    mkdir -p "$HOME/.local/share/zsh/functions"
+  fi
+
+  if [[ ! -L "$HOME/.local/share/zsh/functions/zsh-syntax-highlighting" ]]; then
+    ln -s "$HOME/.config/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" "$HOME/.local/share/zsh/functions/zsh-syntax-highlighting"
   fi
 fi
 

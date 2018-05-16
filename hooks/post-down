@@ -28,6 +28,24 @@ if [[ -d "$HOME/.config/pure" ]]; then
   rm -rf "$HOME/.config/pure"
 fi
 
+# Remove zsh-history-substring-search
+if [[ -L "$HOME/.local/share/zsh/functions/zsh-history-substring-search" ]]; then
+  rm -rf "$HOME/.local/share/zsh/functions/zsh-history-substring-search"
+fi
+
+if [[ -d "$HOME/.config/zsh-history-substring-search" ]]; then
+  rm -rf "$HOME/.config/zsh-history-substring-search"
+fi
+
+# Remove zsh-syntax-highlighting
+if [[ -L "$HOME/.local/share/zsh/functions/zsh-syntax-highlighting" ]]; then
+  rm -rf "$HOME/.local/share/zsh/functions/zsh-syntax-highlighting"
+fi
+
+if [[ -d "$HOME/.config/zsh-syntax-highlighting" ]]; then
+  rm -rf "$HOME/.config/zsh-syntax-highlighting"
+fi
+
 # Remove Tmux Plugins
 if [[ -d "$HOME/.tmux" ]]; then
   rm -rf "$HOME/.tmux"

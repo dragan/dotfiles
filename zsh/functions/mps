@@ -1,0 +1,12 @@
+# Run an Elixir Phoenix Server with a specified MIX_ENV
+
+mps() {
+    local env="$1"
+
+    if [ "$env" == '' ]; then
+        env='rqa'
+    fi
+
+    export MIX_ENV="$env"
+    mix phoenix.server
+}

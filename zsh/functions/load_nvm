@@ -1,0 +1,18 @@
+# Set a default node version for nvm
+# Allow loading of full nvm script for switching version, etc...
+# https://github.com/creationix/nvm
+
+# nvm.sh is super slow to load, default to a known version at startup
+NODE_VERSION=v8.10.0
+NODE_BIN=$HOME/.nvm/versions/node/$NODE_VERSION/bin
+if [ -d "$NODE_BIN" ]; then
+  export PATH="$PATH:$NODE_BIN"
+
+fi
+unset NODE_VERSION
+unset NODE_BIN
+
+load_nvm() {
+  export NVM_DIR="$HOME/.nvm"
+  source $(brew --prefix nvm)/nvm.sh
+}

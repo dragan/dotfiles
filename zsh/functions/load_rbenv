@@ -1,0 +1,7 @@
+# Allows for manually running Ruby Environment (rbenv)
+# https://github.com/rbenv/rbenv
+
+load_rbenv() {
+  eval "$(rbenv init - --no-rehash)"
+  rbenv rehash
+}

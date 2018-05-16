@@ -1,2 +1,154 @@
+#===============================================================================
+# Aliases
+#===============================================================================
+
+## Shell Commands
+alias l='ls --color=always -Aoh --time-style=long-iso'
+alias ls='ls --color=always'
+
+## Editor
 alias vim='nvim'
 alias vi='nvim'
+
+## Random
+alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias zshconfig="nvim ~/.zshrc"
+alias reload="source $HOME/.zshrc"
+alias my_ip="ipconfig getifaddr en0" # Need to come up with a way to get ip address that works on both linux and mac os
+alias srv="python -m SimpleHTTPServer \$1" # Simple, but awesome python http server; If you're working with a static http page, you can use this to serve it rather than viewing the file directly in the browser; The final parameter allows you to specifiy a port
+
+## VPN
+alias vpnup="sudo vpnc concur.conf"
+alias vpndown="sudo vpnc-disconnect"
+
+## DNS Settings
+alias dnsoffice="sudo cp /etc/resolvconf/resolv.conf.d/head_OFFICE /etc/resolvconf/resolv.conf.d/head && sudo resolvconf -u && sudo systemctl stop docker.service && sleep 2 && sudo systemctl start docker.service"
+alias dnsnormal="sudo cp /etc/resolvconf/resolv.conf.d/head_ORIGINAL /etc/resolvconf/resolv.conf.d/head && sudo resolvconf -u && sudo systemctl stop docker.service && sleep 2 && sudo systemctl start docker.service"
+
+## Luxafor
+LIGHT=$HOME/Documents/projects/luxafor
+alias luxg="python $LIGHT/light.py green"
+alias luxy="python $LIGHT/light.py yellow"
+alias luxr="python $LIGHT/light.py red"
+alias luxb="python $LIGHT/light.py blue"
+alias luxw="python $LIGHT/light.py white"
+alias luxo="python $LIGHT/light.py off"
+
+## Directory Aliases
+alias rs="cd $HOME/Documents/projects/receipt-service"
+alias or="cd $HOME/Documents/projects/orchestration"
+alias orn="cd $HOME/Documents/projects/orchestration-ncronquist"
+alias orp="cd $HOME/Documents/projects/orchestration-planning"
+alias orq="cd $HOME/Documents/projects/orchestration-queries"
+alias ord="cd $HOME/Documents/projects/orchestration-deploy"
+alias ordn="cd $HOME/Documents/projects/orchestration-deploy-ncronquist"
+alias pj="cd $HOME/Documents/projects"
+alias awsd="cd $HOME/Documents/projects/aws-tooling"
+alias n="cd $HOME/Google\ Drive/Notes"
+alias devforms="cd $HOME/Documents/projects/developer.concur.com-forms"
+alias devcenter="cd $HOME/Documents/projects/developer.concur.com"
+alias devgateway="cd $HOME/Documents/projects/developer.concur.com-gateway"
+
+## Environment Aliases
+alias envup='while read p; do
+              export $(eval echo $p)
+            done <.env'
+alias envup2='export $(cat .env)'
+
+# Vagrant Aliases
+alias vup='vagrant up --provider virtualbox'
+alias vd='vagrant destroy -f'
+alias vsh='vagrant ssh'
+alias vstatus='vagrant status'
+
+# Git Aliases
+alias gs="git status"
+alias gd="git branch -D"
+alias grb="git rebase"
+alias gp="git push"
+alias gfp="git push -f"
+alias gcm="git checkout master && git pull && git pull origin master"
+alias gb="git branch"
+alias gco="git checkout"
+alias gba="git branch -a"
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gcb="~/.scripts/git-branch-cleanup.sh"
+
+# Docker Aliases
+alias docker_rm_exited='docker rm $(docker ps -q -f status=exited)'
+alias docker_clear_images='docker rmi -f $(docker images -q)'
+
+# Kubectl
+alias kks='kubectl --namespace=kube-system'
+alias kk3='kubectl --namespace=platform-receipts'
+alias kubectl_dev03='kubectl config use-context receipts-dev-03'
+alias kubectl_dev5='kubectl config use-context receipts-dev-5'
+alias kubectl_dev6='kubectl config use-context receipts-dev-06'
+alias kubectl_dev7='kubectl config use-context receipts-dev-7'
+alias kubectl_qa_dev='kubectl config use-context receipt-qa-dev2'
+alias kubectl_qa_prod='kubectl config use-context receipt-qa-prod'
+alias kubectl_prod3='kubectl config use-context receipts-prod-3'
+alias kubectl_prod_aegon='kubectl config use-context receipts-prod-aegon'
+alias kubectl_prod_emea2='kubectl config use-context receipts-prod-emea-2'
+alias kubectl_emea_aegon='kubectl config use-context receipts-emea-aegon'
+alias kubetail="$HOME/Documents/projects/kubetail/kubetail"
+
+## Project Specific Aliases
+
+  ### Receipt Service
+  alias rw='npm run dev:watch-logs api consumer'
+  alias rr='npm run dev:restart api consumer && npm run dev:watch-logs api consumer'
+  alias rtest='npm run dev:run-test'
+  alias rci='npm run dev:run-ci'
+  alias rrhard='docker-compose kill -s SIGKILL && docker-compose rm -f --all && docker rmi -f $(docker images -q receiptservice_api) && sudo rm -rf $HOME/data/db && npm run dev:start'
+  alias rdestroy='docker-compose kill -s SIGKILL && docker-compose rm -f --all && docker rmi -f $(docker images -q receiptservice_api) && sudo rm -rf $HOME/data/db'
+  # alias dclear_receipts='docker rm $(docker ps -q -f status=exited) && docker rmi -f $(docker images -q receiptservice_api)'
+  alias rmimgs='for f in $HOME/Documents/projects/receipt-service/receipt-images/*.png; do sudo rm "$f"; done'
+
+  alias getUser="$HOME/Documents/projects/receipt-service/src/tools/getUserInfo.sh"
+
+    # Request Tool Get Aliases
+    alias gl="$REQUEST get local"
+    alias gd5="$REQUEST get dev5"
+    alias gd6="$REQUEST get dev6"
+    alias gd7="$REQUEST get dev7"
+    alias gqd="$REQUEST get qa_dev"
+    alias gqp="$REQUEST get qa_prod"
+    alias gqp4="$REQUEST get qa_prod4"
+    alias g3_2c="$REQUEST get rqa3_2c"
+
+    # Request Tool Post Aliases
+    alias pl="$REQUEST post local"
+    alias pl_real="$HOME/Drive/Notes/Concur/technical/curl_commands/receipts/archive/local_real.sh"
+    alias pd5="$REQUEST post dev5"
+    alias pd6="$REQUEST post dev6"
+    alias pd7="$REQUEST post dev7"
+    alias pqd="$REQUEST post qa_dev"
+    alias pqp="$REQUEST post qa_prod"
+    alias pqp4="$REQUEST post qa_prod4"
+    alias p3_2c="$REQUEST post rqa3_2c"
+    alias p3_2c_real="$HOME/Drive/Notes/Concur/technical/curl_commands/receipts/archive/rqa3_real.sh"
+
+    # Request Tool PostForm Aliases
+    alias pfl="$REQUEST postForm local"
+    alias pfd5="$REQUEST postForm dev5"
+    alias pfd6="$REQUEST postForm dev6"
+    alias pfd7="$REQUEST postForm dev7"
+    alias pfqd="$REQUEST postForm qa_dev"
+    alias pfqp="$REQUEST postForm qa_prod"
+    alias pf3_2c="$REQUEST postForm rqa3_2c"
+
+  ### Orchestration
+  alias mc='mix compile --force --warnings-as-errors'
+  alias mdgc='mix do deps.get, deps.compile'
+  alias mt='export MIX_ENV=test && mix test'
+  alias mtf='export MIX_ENV=test && mix do compile, test'
+  alias check='mix do dogma, credo --strict --all'
+  alias mci='export MIX_ENV=test && mix do dogma, credo --strict --all, test'
+  alias mbd='mix absinthe.schema.json ./schema.json && ./node_modules/.bin/graphdoc --force --schema ./schema.json --output ./priv/docs && sed -i -- "s/\.doc\.html//g" ./priv/docs/*.html'
+  alias mrebuild="export MIX_ENV=prod && rm -rf ./deps && rm -rf ./node_modules && npm install && mix do deps.get, deps.compile && mix compile --force --warnings-as-errors && ./node_modules/brunch/bin/brunch build --production"
+
+  ### CDS
+  alias eng="cd $HOME/Documents/projects/cds/engine"
+  alias rst="cd $HOME/Documents/projects/cds/resolver-tools"
+  alias cli="cd $GOPATH/src/github.concur.com/client-data-services/cli"

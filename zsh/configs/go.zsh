@@ -1,2 +1,2 @@
-export GOPATH="$HOME"
-export GOBIN="$HOME/.bin"
+# export GOPATH="$HOME"
+# export GOBIN="$HOME/.bin"

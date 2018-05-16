@@ -14,3 +14,7 @@ bindkey "^P" history-search-backward
 bindkey "^Y" accept-and-hold
 bindkey "^N" insert-last-word
 bindkey "^Q" push-line-or-edit
+
+# Bind Up and Down arrow keys to searching through history
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down

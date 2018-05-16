@@ -1,0 +1,6 @@
+# Allows for manually running Docker Version Manager (dvm)
+# https://howtowhale.github.io/dvm/
+
+load_dvm() {
+  source $(brew --prefix dvm)/dvm.sh
+}

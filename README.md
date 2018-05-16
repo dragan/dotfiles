@@ -1,11 +1,6 @@
-ragan does dotfiles
+Nick's Dotfiles
 ===================
 
-dotfiles
---------
-
-Your dotfiles are how you personalize your system. These are my dotfiles. There
-are many like them, but these are mine.
 
 Requirements
 ------------
@@ -16,6 +11,7 @@ Set zsh as your login shell:
 
 Close your terminal and launch again, if `zsh` indicates that a zshrc file is
 missing, just press `q`.
+
 
 Install
 -------
@@ -40,7 +36,7 @@ Once you've verfied the above are installed, clone this repository to your
 machine:
 
 ```
-$ git clone https://github.com/dragan/dotfiles.git $HOME/.dotfiles
+$ git clone git@github.com:ncronquist/dotfiles.git $HOME/.dotfiles
 ```
 
 Install the dotfiles using rcup which is a part of rcm:
@@ -70,33 +66,20 @@ You can also easily remove your dotfiles by running:
 $ rcdn -v
 ```
 
+
 Terminal Theme
 --------------
 
-I use [base16-shell][base16-shell] to set my terminal theme and sometimes my
-preference on theme varies. Therefore, after you run rcup and relaunch your
-terminal, you will need to set your theme. You will only have to do this once.
+I use [nova][nova] to set my terminal theme. The first time you run `rcup` and relaunch your terminal, you will need to set your theme. You will only have to do this once.
 
-The maintainers of base16 have put together a [nice page][base16] to view the
-different themes.
+To set the theme in iTerm:
 
-To set a theme, in your new terminal, start typing `base16` followed by a tab
-to perform tab completion. You should be greeted with quite a few `base16_`
-options. For instance, if I wanted to set my theme to `default-dark`, I would
-type:
+1. In iTerm, open your preferences
+2. Tap on "Profiles" > "Colors" > "Color Presets" > "Import"
+3. Select the "$HOME/.iterm/themes/nova.itermcolors" which was downloaded in the [pre-up](./hooks/pre-up) hook script.
 
-```
-$ base16_default-dark
-```
+[nova]: https://trevordmiller.com/projects/nova
 
-The result of the command will create three things:
-
-1. `.base16_theme` file in your `$HOME` directory
-2. `BASE16_THEME` environment variable
-3. `.vimrc_background` for using within vim to set the theme
-
-[base16-shell]: https://github.com/chriskempson/base16-shell
-[base16]: https://chriskempson.github.io/base16/
 
 Tmux Plugins
 ------------
@@ -106,11 +89,12 @@ additional plugins. To install them, launch tmux and then use the following key
 combo:
 
 ```
-Ctrl + s
+Ctrl + Space
 Shift + i
 ```
 
 [tpm]: https://github.com/tmux-plugins/tpm
+
 
 Vim Plugins
 -----------
@@ -119,14 +103,14 @@ Vim plugins are managed with [Plug][plug].
 
 [plug]: https://github.com/junegunn/vim-plug
 
+
 Thanks
 ------
 
-Thank you, [thoughtbot][thoughtbot], this repository was heavily inspired
-by their project. I liked their organization and installation method. The only
-reason I didn't fork is due to not being a Ruby developer.
+This dotfiles repo was originally forked from [@dragan](@dragan) and has 
+been tweaked for my particular preferences.
 
-[thoughtbot]: https://github.com/thoughtbot/dotfiles
+[@dragan]: https://github.com/dragan/dotfiles
 
 License
 -------
@@ -135,4 +119,4 @@ Released under the [MIT License][mit-license]. See [LICENSE][license] for more
 information.
 
 [mit-license]: http://www.opensource.org/licenses/mit-license.php
-[license]: https://github.com/dragan/dotfiles/blob/master/LICENSE
+[license]: https://github.com/ncronquist/dotfiles/blob/master/LICENSE
