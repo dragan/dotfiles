@@ -1,0 +1,90 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env sh
+
+# Exit on error
+set -e
+
+http_download() {
+    _local_file="${1}"
+	_source_url="${2}"
+    _response_code="$(curl -w '%{http_code}' -sL -o "${_local_file}" "${_source_url}")"
+
+    if [ "${_response_code}" != "200" ]; then
+		log_info "http_download_curl received HTTP status ${_response_code}"
+		return 1
+	fi
+
+	return 0
+}
+
+install_alacritty() {
+    log_info "Alacritty for Mac is not installed ..."
+
+    log_info "Downloading Alacritty for Mac ..."
+    _alacritty_version="v0.13.2"
+    _alacritty_dmg="Alacritty-${_alacritty_version}.dmg"
+    _url="https://github.com/alacritty/alacritty/releases/download/${_alacritty_version}/${_alacritty_dmg}"
+    ensure http_download "${temp_dir}/${_alacritty_dmg}" "${_url}"
+
+    log_info "Mounting ${temp_dir}/${_alacritty_dmg} ..."
+    ensure hdiutil mount "${temp_dir}/${_alacritty_dmg}" > /dev/null 2>&1
+    ensure sudo cp -R "/Volumes/Alacritty/Alacritty.app" /Applications
+    log_info "Unmounting ${temp_dir}/${_alacritty_dmg} ..."
+    ensure hdiutil eject /Volumes/Alacritty > /dev/null 2>&1
+}
+
+# Run a command that should never fail. If the command fails execution
+# it will immediately terminate with an error showing the failing
+# command.
+ensure() {
+    if ! "$@"; then log_error "command failed: $*"; fi
+}
+
+check_command() {
+    command -v "$1" > /dev/null 2>&1
+}
+
+need_command() {
+    if ! check_command "$1"; then
+        log_error "need '$1' (command not found)"
+    fi
+}
+
+log_error() {
+    log_info "$1" >&2
+    exit 1
+}
+
+log_info() {
+    printf 'chezmoi: %s\n' "${*}" 1>&2
+}
+
+main () {
+    need_command "printf"
+    need_command "command"
+    need_command "mktemp"
+    need_command "curl"
+    need_command "chmod"
+    need_command "rm"
+    need_command "hdiutil"
+
+    if [ -d /Applications/Alacritty.app ]; then
+        if [ -f /Applications/Alacritty.app/Contents/MacOS/alacritty ]; then
+            log_info "Found existing alacritty install."
+            /Applications/Alacritty.app/Contents/MacOS/alacritty --version
+        fi
+    else
+        install_alacritty
+    fi
+}
+
+temp_dir=""
+if ! temp_dir="$(ensure mktemp -d)"; then
+    # Manually propagate exit status from subshell
+    exit 1
+fi
+trap 'rm -rf -- "${temp_dir}"' EXIT
+trap 'exit' INT TERM
+
+main "$@" || exit 1
+{{ end -}}

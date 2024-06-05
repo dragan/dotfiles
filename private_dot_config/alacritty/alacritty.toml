@@ -1,0 +1,19 @@
+# Keep Color Themes Separate
+import = [
+    "~/.config/alacritty/themes/catppuccin/catppuccin-mocha.toml"
+]
+
+[window]
+dynamic_padding = true
+opacity = 1.0
+
+[window.padding]
+x = 5
+y = 5
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "Iosevka Nerd Font"
+style = "Regular"

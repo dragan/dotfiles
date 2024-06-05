@@ -1,0 +1,13 @@
+{{/* boolean feature flags */}}
+
+{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $ephemeral := false -}}
+
+{{/* true if this machine does not have a screen and keyboard */}}
+{{- $headless := false -}}
+
+{{- "" -}}
+
+[data]
+    ephemeral = {{ $ephemeral }}
+    headless = {{ $headless }}
