@@ -2,3 +2,12 @@ packages:
     darwin:
         brews:
         - "gnupg"
+        - "starship"
+        - "fzf"
+        - "ripgrep"
+        - "tree"
+        - "zoxide"
+        - "eza"
+        - "fd"
+        - "bat"
+        - "direnv"

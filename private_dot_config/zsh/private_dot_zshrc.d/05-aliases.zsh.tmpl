@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+# Aliases
+{{- if lookPath "chezmoi" }}
+alias cz="chezmoi"
+{{- end }}
+
+{{- if lookPath "bat" }}
+alias cat="bat"
+{{- end }}
+
+{{- if lookPath "eza" }}
+alias ls="eza"
+{{- end }}

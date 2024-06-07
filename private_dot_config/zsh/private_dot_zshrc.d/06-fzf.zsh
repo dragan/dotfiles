@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+# fzf
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Catppuccin Mocha
+# https://github.com/catppuccin/fzf
+FZF_COLORS="bg+:#313244,\
+bg:#1e1e2e,\
+spinner:#f5e0dc,\
+hl:#f38ba8,\
+fg:#cdd6f4,\
+header:#f38ba8,\
+info:#cba6f7,\
+pointer:#f5e0dc,\
+marker:#f5e0dc,\
+fg+:#cdd6f4,\
+prompt:#cba6f7,\
+hl+:#f38ba8"
+
+export FZF_DEFAULT_OPTS="--border sharp \
+--layout reverse \
+--color \"${FZF_COLORS}\" \
+--prompt '∷ '"
+
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -n 10'"
+export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree ls"
+
+eval "$(fzf --zsh)"

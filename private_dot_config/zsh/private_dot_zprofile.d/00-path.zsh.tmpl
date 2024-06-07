@@ -1,0 +1,66 @@
+#!/usr/bin/env zsh
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+{{   if stat "/opt/homebrew/bin/brew" -}}
+
+# Opt out of homebrew analytics
+# https://docs.brew.sh/Analytics
+export HOMEBREW_NO_ANALYTICS=1
+
+# Load Homebrew environment
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
+export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew"
+
+path=(
+    "${HOMEBREW_PREFIX}/bin"
+    "${HOMEBREW_PREFIX}/sbin"
+    ${path}
+)
+
+fpath=(
+    "${HOMEBREW_PREFIX}/share/zsh-completions"
+    "${HOMEBREW_PREFIX}/share/zsh/site-functions"
+    "${HOMEBREW_PREFIX}/share/zsh/functions"
+    "${HOME}/.local/share/zsh/completions"
+    ${fpath}
+)
+
+manpath=(
+    "${HOMEBREW_PREFIX}/share/man"
+    ${manpath}
+    ""  # Empty string means to use the default search path.
+)
+
+infopath=(
+    "${HOMEBREW_PREFIX}/share/info"
+    ${infopath}
+    ""  # Empty string means to use the default search path.
+)
+{{   end -}}
+
+path=(
+    "${HOME}/.local/bin"
+    ${path}
+)
+
+fpath=(
+    "${ZDOTDIR}/functions"
+    "${HOME}/.local/share/zsh/completions"
+    ${fpath}
+)
+
+manpath=(
+    "${HOME}/.local/share/man"
+    ${manpath}
+    ""  # Empty string means to use the default search path.
+)
+
+infopath=(
+    "${HOME}/.local/share/info"
+    ${infopath}
+    ""  # Empty string means to use the default search path.
+)
+{{ end -}}

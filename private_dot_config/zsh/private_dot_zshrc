@@ -1,0 +1,39 @@
+#!/usr/bin/env zsh
+
+# Global configuration only in this file, anything else needs to be broken
+# out in the "${ZDOTDIR}/.zshrc.d" directory.
+
+# Plugin manager: zinit
+# Directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit"
+
+# Download Zinit if missing
+if [ ! -d "$ZINIT_HOME" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+# Snippets
+zinit snippet OMZP::vi-mode
+zinit snippet OMZP::git
+
+# Modular config files
+#--------------------
+# `(on)` means to sort the glob by name.
+# `(N)` enables NULL_GLOB, i.e. no error if the glob generates nothing.
+if [[ -e "${ZDOTDIR}/.zshrc.d" ]]
+then
+    for file in "${ZDOTDIR}/.zshrc.d/"*(onN)
+    do
+	    source $file
+    done
+fi
