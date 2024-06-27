@@ -11,3 +11,4 @@ packages:
         - "fd"
         - "bat"
         - "direnv"
+        - "tmux"
