@@ -5,6 +5,12 @@
     stripComponents = 1
     refreshPeriod = "168h"
 
+[".config/lazygit/themes/catppuccin"]
+type = "git-repo"
+url = "https://github.com/catppuccin/lazygit.git"
+ref = "v2.2.0"
+refreshPeriod = "168h"
+
 {{- if and (not .ephemeral) (not .headless) }}
 {{-   $fontDir := "" }}
 {{-   if eq .chezmoi.os "darwin" }}

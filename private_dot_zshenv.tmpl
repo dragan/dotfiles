@@ -52,7 +52,10 @@ HISTDUP="erase"
 export HISTSIZE SAVEHIST HISTFILE HISTDUP
 
 # Editor/Visual
-{{- if lookPath "vim" }}
+{{- if lookPath "nvim" }}
+export EDITOR="nvim"
+export VISUAL="nvim"
+{{- else if lookPath "vim" }}
 export EDITOR="vim"
 export VISUAL="vim"
 {{- else }}

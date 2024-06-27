@@ -12,3 +12,5 @@ packages:
         - "bat"
         - "direnv"
         - "tmux"
+        - "neovim"
+        - "lazygit"
