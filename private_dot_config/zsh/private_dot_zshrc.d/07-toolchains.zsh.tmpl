@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+
+{{- if lookPath "mise" }}
+# Activate mise
+eval "$(mise activate zsh)"
+{{- end }}
+
+# TODO: Provide checks before sourcing
+# EXAMPLES:
+#{{- if lookPath "cargo" }}
+#source "${HOME}/.cargo/env"
+#{{- end }}
+#
+#{{- if (joinPath .chezmoi.homeDir ".cargo/env" | stat) }}
+## Setup rust toolchain
+#source "${HOME}/.cargo/env"
+#{{- end }}
+#
+#{{- if eq "" (lookPath "rustup") }}
+## Setup rust toolchain in PATH
+#source "${HOME}/.cargo/env"
+#{{- end }}
+# Setup rust toolchain in PATH
+. "${HOME}/.cargo/env"

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+if [[ -v CHEZMOI_FIRST_RUN_TOOLCHAINS ]]; then
+    echo "First run..."
+	toolchains=$CHEZMOI_FIRST_RUN_TOOLCHAINS
+else
+	AVAILABLE_TOOLCHAINS=("Lua" "Node.js" "Python" "Go" "Rust" "Ruby")
+	toolchains=$(gum choose "${AVAILABLE_TOOLCHAINS[@]}" --no-limit --height 10 --header "Select toolchain")
+fi
+
+if [[ -n "$toolchains" ]]; then
+    for toolchain in $toolchains; do
+        echo "Installing ${toolchain}..."
+        case $toolchain in
+            Lua)
+                # NeoVim expects Lua 5.1, so setting globally
+                # Also Gum just defaults to the only option
+                # TODO: Is there a better way for CDPATH work around?
+                # https://github.com/thoughtbot/capybara-webkit/issues/56
+                CDPATH=""
+                mise use --global --yes lua@5.1.5
+                ;;
+            Node.js)
+                mise use --global node@lts
+                ;;
+            Python)
+                mise use --global python@latest
+                ;;
+            Go)
+                mise use --global go@latest
+                ;;
+            Rust)
+                bash -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" -- --no-modify-path -y
+                ;;
+            Ruby)
+                mise use --global ruby@3.3
+                ;;
+        esac
+    done
+fi

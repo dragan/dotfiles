@@ -25,8 +25,6 @@ require("lazy").setup({
     },
     install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
     checker = { enabled = true }, -- automatically check for plugin updates
-    -- Disable lua rocks until we have a lua toolchain installed
-    rocks = { enabled = false },
     performance = {
         rtp = {
             -- disable some rtp plugins

@@ -1,10 +1,31 @@
 return {
-    "williamboman/mason.nvim",
-    opts = {
-        ensure_installed = {
-            "stylua",
-            "shellcheck",
-            "shfmt",
+    {
+        "williamboman/mason.nvim",
+        opts = {
+            ensure_installed = {
+                "stylua",
+                "shellcheck",
+                "shfmt",
+                "markdownlint-cli2",
+                "markdown-toc",
+                "marksman",
+                "yaml-language-server",
+                "json-lsp",
+                "taplo",
+                "lua-language-server",
+                "prettier",
+                "pyright",
+                "basedpyright",
+                "ruff-lsp",
+                "ruff",
+                "debugpy",
+                "gofumpt",
+                "goimports",
+                "gopls",
+                "delve",
+                "codelldb",
+                "solargraph",
+            },
         },
     },
 }
