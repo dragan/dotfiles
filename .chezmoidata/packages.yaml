@@ -1,0 +1,4 @@
+packages:
+  darwin:
+    - "gnupg"
+    - "neovim"

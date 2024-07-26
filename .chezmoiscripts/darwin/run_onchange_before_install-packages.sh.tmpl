@@ -1,0 +1,17 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+
+# Exit on error
+set -e
+
+# At this point Homebrew should be installed
+if ! command -v brew >/dev/null; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range .packages.darwin -}}
+brew {{ . | quote }}
+{{ end -}}
+EOF
+{{ end -}}
