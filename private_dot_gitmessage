@@ -1,12 +1,26 @@
 
-
-# http://chris.beams.io/posts/git-commit/
-
-# 50-character subject line
+# Commit messages should be readable by human and machine. To
+# accomplish this goal all commit messages should follow v1.0.0 of the
+# conventional commits specification.
 #
-# 72-character wrapped longer description. This should answer:
+# 50-character subject line.
+# <type>[optional scope]: <description>
+#
+# 72-character wrapped longer optional body and optional footer.
+# [optional body]
+#
+# [optional footer(s)]
+#
+# References:
+# - https://www.conventionalcommits.org/en/v1.0.0/
+#
+# The body should answer:
 #
 # * Why was this change necessary?
 # * How does it address the problem?
 # * Are there any side effects?
 #
+# Use the footer when necessary per the spec.
+#
+# Additional references:
+# - http://chris.beams.io/posts/git-commit/
