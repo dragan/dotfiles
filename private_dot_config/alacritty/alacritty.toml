@@ -1,0 +1,26 @@
+import = [ "~/.config/alacritty/themes/catppuccin/catppuccin-mocha.toml" ]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+opacity = 0.98
+
+[window.padding]
+x = 16
+y = 14
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "Iosevka Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "Iosevka Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "Iosevka Nerd Font"
+style = "Italic"

@@ -1,0 +1,24 @@
+{{- if not .headless }}
+[".config/alacritty/themes/catppuccin"]
+  type = "archive"
+  url = "https://github.com/catppuccin/alacritty/archive/main.tar.gz"
+  exact = true
+  stripComponents = 1
+  include = ["*/*.toml"]
+  refreshPeriod = "168h"
+
+{{-    $fontDir := "" }}
+{{-   if eq .chezmoi.os "darwin" }}
+{{-     $fontDir = "Library/Fonts" }}
+{{-   end }}
+{{    range (list
+        "IosevkaNerdFont-Regular.ttf"
+        "IosevkaNerdFont-Bold.ttf"
+        "IosevkaNerdFont-Italic.ttf"
+        "IosevkaNerdFont-BoldItalic.ttf") }}
+["{{ $fontDir }}/{{ . }}"]
+  type = "file"
+  url = "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/{{ . }}"
+  refreshPeriod = "168h"
+{{-   end }}
+{{- end }}

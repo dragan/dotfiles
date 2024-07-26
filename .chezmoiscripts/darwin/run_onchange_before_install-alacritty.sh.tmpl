@@ -1,0 +1,49 @@
+{{ if and (eq .chezmoi.os "darwin") (not .headless) -}}
+#!/usr/bin/env bash
+
+# Exit on error
+set -e
+
+# TODO: Determine if chezmoiexternal can support disk images.
+# On cursory look, doesn't look like disk image is a supported type. If not,
+# submit a feature request so we can clean this up. Otherwise, alacritty
+# is not managed by chezmoi and will take extra clean up steps.
+temp_dir=""
+if ! temp_dir="$(mktemp -d)"; then
+  # Manually propagate exit status from subshell
+  exit 1
+fi
+trap 'rm -rf -- "${temp_dir}"' EXIT
+trap 'exit' INT TERM
+
+cd $temp_dir
+alacritty_version="v0.13.2"
+alacritty_dmg="Alacritty-${alacritty_version}.dmg"
+url="https://github.com/alacritty/alacritty/releases/download/${alacritty_version}/${alacritty_dmg}"
+echo "Downloading alacritty ${alacritty_version} to: ${temp_dir} ..."
+response_code="$(curl -w '%{http_code}' -sL -o "${alacritty_dmg}" "${url}")"
+
+if [ "${response_code}" != "200" ]; then
+  echo "download alacritty: received HTTP status: ${response_code}"
+  exit 1
+fi
+
+echo "Installing alacritty ${alacritty_version} ..."
+hdiutil mount "${alacritty_dmg}" > /dev/null 2>&1
+cp -R "/Volumes/Alacritty/Alacritty.app" "${HOME}/Applications"
+hdiutil eject /Volumes/Alacritty > /dev/null 2>&1
+cd - > /dev/null 2>&1
+echo "Installed alacritty to: ${HOME}/Applications ..."
+
+# Resources
+# Ignoring for now, but here for reference.
+# - completions
+#   - zsh: Alacritty.app/Contents/Resources/completions/_alacritty
+#     - Symlink to: $HOME/.local/share/zsh/functions
+# - manpages
+#   - Alacritty.app/Contents/Resources/alacritty.1.gz
+#   - Alacritty.app/Contents/Resources/alacritty.5.gz
+#   - Alacritty.app/Contents/Resources/alacritty-msg.1.gz
+#   - Alacritty.app/Contents/Resources/alacritty-bindings.5.gz
+#   - $HOME/.local/share/man
+{{ end -}}
