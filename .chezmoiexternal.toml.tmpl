@@ -22,3 +22,25 @@
   refreshPeriod = "168h"
 {{-   end }}
 {{- end }}
+
+[".local/share/zinit/zinit"]
+  type = "git-repo"
+  url = "https://github.com/zdharma-continuum/zinit.git"
+  refreshPeriod = "168h"
+
+{{- $batThemesDir := ".config/bat/themes" }}
+{{  range (list
+      "Catppuccin Latte.tmTheme"
+      "Catppuccin Frappe.tmTheme"
+      "Catppuccin Macchiato.tmTheme"
+      "Catppuccin Mocha.tmTheme") }}
+["{{ $batThemesDir }}/{{ . }}"]
+  type = "file"
+  url = "https://github.com/catppuccin/bat/raw/main/themes/{{ . }}"
+  refreshPeriod = "168h"
+{{- end }}
+
+[".config/git/catppuccin.gitconfig"]
+  type = "file"
+  url = "https://github.com/catppuccin/delta/raw/main/catppuccin.gitconfig"
+  refreshPeriod = "168h"

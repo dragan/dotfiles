@@ -1,0 +1,51 @@
+#!/usr/bin/env zsh
+
+# Aliases
+{{- if lookPath "chezmoi" }}
+alias cz="chezmoi"
+{{- end }}
+
+# Tools
+
+# Neovim
+{{- if lookPath "nvim" }}
+alias vim="nvim"
+alias vi="nvim"
+alias n="nvim"
+{{- end }}
+
+alias e="$EDITOR"
+alias v="$VISUAL"
+
+# Git
+alias g="git"
+alias gcm="git commit -m"
+alias gcam="git commit -a -m"
+alias gcad="git commit -a --amend"
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+# Replace find with fd
+{{- if lookPath "fd" }}
+alias find="fd"
+{{- end }}
+
+# Replace cat with bat
+{{- if lookPath "bat" }}
+alias cat="bat"
+{{- end }}
+
+# File system
+# Replace ls with eza
+{{- if lookPath "eza" }}
+alias ls="eza -lh --group-directories-first --icons"
+{{- end }}
+
+alias lsa="ls -a"
+alias lt="eza --tree --level=2 --long --icons --git"
+alias lta="lt -a"
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+
+# Directories
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."

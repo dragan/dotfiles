@@ -1,0 +1,26 @@
+[push]
+  default = current
+[color]
+  ui = auto
+[core]
+  excludesfile = ~/.config/git/ignore
+  autocrlf = input
+  pager = delta
+[merge]
+  ff = only
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
+[commit]
+  template = ~/.config/git/message
+[fetch]
+  prune = true
+[rebase]
+  autosquash = true
+[interactive]
+  diffFilter = delta --color-only
+[include]
+  path = ~/.config/git/catppuccin.gitconfig
+[delta]
+  navigate = true
+  features = catppuccin-mocha

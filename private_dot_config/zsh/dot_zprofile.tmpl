@@ -1,0 +1,59 @@
+#!/usr/bin/env zsh
+
+# Load completions 
+fpath=("$HOME/.local/share/zsh/site-functions" $fpath)
+
+{{ if stat "/opt/homebrew/bin/brew" -}}
+fpath+=("{{ output "/opt/homebrew/bin/brew" "--prefix" | trim }}/share/zsh/site-functions")
+
+# To opt in to Homebrew analytics, `unset` this in ~/.zshrc.local .
+# Learn more about what you are opting in to at
+# https://docs.brew.sh/Analytics
+export HOMEBREW_NO_ANALYTICS=1
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ end -}}
+
+# Set the GPG_TTY to be the same as the TTY
+# Either via the env var or via the tty command
+if [ -n "$TTY" ]; then
+  GPG_TTY="$(tty)"
+else
+  GPG_TTY="$TTY"
+fi
+export GPG_TTY
+
+# Locale
+LANG=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+export LANG LANGUAGE LC_ALL
+
+# Editor/Visual
+{{- if lookPath "nvim" }}
+VISUAL="nvim"
+{{- else if lookPath "vim" }}
+VISUAL="vim"
+{{- else }}
+VISUAL="vi"
+{{- end }}
+EDITOR=$VISUAL
+export VISUAL EDITOR
+
+# Put our dotfiles bin directory first
+PATH="${HOME}/.local/bin:$PATH"
+export PATH
+
+# Ripgrep config
+export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgrep/config"
+
+# Modular config files
+# --------------------
+# `(on)` means to sort the glob by name.
+# `(N)` enables NULL_GLOB, i.e. no error if the glob generates nothing.
+if [[ -e "${ZDOTDIR}/.zprofile.d" ]]
+then
+  for file in "${ZDOTDIR}/.zprofile.d/"*(onN)
+  do
+    source $file
+  done
+fi

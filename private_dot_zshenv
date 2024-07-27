@@ -1,0 +1,47 @@
+#!/usr/bin/env zsh
+
+# Zsh reads these files in the following order:
+# 1. .zshenv - Should only contain user’s environment variables.
+# 2. .zprofile - Can be used to execute commands just after logging in.
+# 3. .zshrc - Should be used for the shell configuration and for executing commands.
+# 4. .zlogin - Same purpose than .zprofile, but read just after .zshrc.
+# 5. .zlogout - Can be used to execute commands when a shell exits.
+
+# XDG Base Directory Specification
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+
+# Setup the XDG base directory environment variables.
+# These variables should be set based on system conventions.
+# For macOS, it's different, but not totally incompatible.
+# For sake of portability with my scripts, these match what
+# the software expects.
+
+# Config
+export XDG_CONFIG_HOME="${HOME}/.config"
+
+# Data
+export XDG_DATA_HOME="${HOME}/.local/share"
+
+# State, cache, and runtime
+export XDG_STATE_HOME="${HOME}/.local/state"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_RUNTIME_DIR="${TMPDIR}"
+
+# Additional XDG directories
+export XDG_CONFIG_DIRS="${HOME}/Library/Preferences:/Library/Application Support:/Library/Preferences"
+export XDG_DATA_DIRS="/Library/Application Support"
+
+# Zsh Home Directory
+export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+
+# Modular config files
+# --------------------
+# `(on)` means to sort the glob by name.
+# `(N)` enables NULL_GLOB, i.e. no error if the glob generates nothing.
+if [[ -e "${ZDOTDIR}/.zshenv.d" ]]
+then
+  for file in "${ZDOTDIR}/.zshenv.d/"*(onN)
+  do
+    source $file
+  done
+fi

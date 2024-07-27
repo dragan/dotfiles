@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+{{ if lookPath "starship" -}}
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
+eval "$(starship init zsh)"
+{{ else -}}
+# Could not find starship in path
+{{ end -}}
