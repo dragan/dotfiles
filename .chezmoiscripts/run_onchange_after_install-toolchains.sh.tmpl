@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+{{ range .toolchains -}}
+{{- $toolchain := . }}
+{{- if eq $toolchain.name "rust" }}
+bash -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" -- --no-modify-path -y
+. "$HOME/.cargo/env"
+rustup component add rust-analyzer
+{{- else }}
+mise use --global --yes {{ $toolchain.name }}@{{ $toolchain.version }}
+{{- end }}
+{{ range $toolchain.packages -}}
+{{ $package := . -}}
+mise exec {{ $toolchain.name }} -- {{ $toolchain.package_command }} {{ $package.name }}
+{{ end -}}
+{{ end -}}

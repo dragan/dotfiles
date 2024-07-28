@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+{{- if lookPath "mise" }}
+# Activate mise
+eval "$(mise activate zsh)"
+{{- end }}
+
+{{ if (joinPath .chezmoi.homeDir ".cargo/env" | stat) -}}
+# Load rust environment
+. "$HOME/.cargo/env"
+{{- end }}

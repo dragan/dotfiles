@@ -1,0 +1,29 @@
+toolchains:
+  - name: "lua"
+    version: "5.1.5"
+    package_command: ""
+    packages:
+  - name: "node"
+    version: "lts"
+    package_command: "npm install --global"
+    packages:
+      - name: "neovim"
+  - name: "python"
+    version: "latest"
+    package_command: "pip install"
+    packages:
+      - name: "neovim"
+  - name: "go"
+    version: "latest"
+    package_command: ""
+    packages:
+  - name: "rust"
+    version: "latest"
+    package_command: ""
+    packages:
+  - name: "ruby"
+    version: "3.3"
+    package_command: "gem install --no-document"
+    packages:
+      - name: "neovim"
+      - name: "rails"

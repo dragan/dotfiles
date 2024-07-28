@@ -16,3 +16,6 @@ packages:
     - "age"
     - "tmux"
     - "btop"
+    - "mise"
+    - "libyaml"
+    - "shellcheck"
