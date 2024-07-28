@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: Refactor to include something like tmuxinator
+
 path_name="$(basename "$PWD" | tr . -)"
 session_name=${1-$path_name}
 

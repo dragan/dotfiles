@@ -14,3 +14,4 @@ packages:
     - "gdu"
     - "git-delta"
     - "age"
+    - "tmux"
