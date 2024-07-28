@@ -24,6 +24,10 @@ alias gcam="git commit -a -m"
 alias gcad="git commit -a --amend"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
+{{- if lookPath "lazygit" }}
+alias lzg="lazygit"
+{{- end }}
+
 # Replace find with fd
 {{- if lookPath "fd" }}
 alias find="fd"
@@ -32,6 +36,11 @@ alias find="fd"
 # Replace cat with bat
 {{- if lookPath "bat" }}
 alias cat="bat"
+{{- end }}
+
+# Lazy Git
+{{- if lookPath "lazygit" }}
+alias lazygit="lazygit --use-config-file=\"${XDG_CONFIG_HOME}/lazygit/config.yml,${XDG_CONFIG_HOME}/lazygit/themes/catppuccin/themes-mergable/mocha/blue.yml\""
 {{- end }}
 
 # File system
