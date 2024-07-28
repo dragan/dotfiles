@@ -44,3 +44,10 @@
   type = "file"
   url = "https://github.com/catppuccin/delta/raw/main/catppuccin.gitconfig"
   refreshPeriod = "168h"
+
+[".config/btop/themes"]
+  type = "archive"
+  url = {{ gitHubLatestReleaseAssetURL "catppuccin/btop" "themes.tar.gz" | quote }}
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
