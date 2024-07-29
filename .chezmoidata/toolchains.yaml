@@ -1,29 +1,31 @@
 toolchains:
   - name: "lua"
     version: "5.1.5"
-    package_command: ""
     packages:
   - name: "node"
     version: "lts"
-    package_command: "npm install --global"
     packages:
       - name: "neovim"
+        install_command: "npm install --global"
   - name: "python"
     version: "latest"
-    package_command: "pip install"
     packages:
       - name: "neovim"
+        install_command: "pip install"
+      - name: "pipx"
+        install_command: "pip install --upgrade --user"
+      - name: "posting"
+        install_command: "pipx install"
   - name: "go"
     version: "latest"
-    package_command: ""
     packages:
   - name: "rust"
     version: "latest"
-    package_command: ""
     packages:
   - name: "ruby"
     version: "3.3"
-    package_command: "gem install --no-document"
     packages:
       - name: "neovim"
+        install_command: "gem install --no-document"
       - name: "rails"
+        install_command: "gem install --no-document"
