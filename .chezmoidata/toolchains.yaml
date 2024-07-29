@@ -16,6 +16,8 @@ toolchains:
         install_command: "pip install --upgrade --user"
       - name: "posting"
         install_command: "pipx install"
+      - name: "awscli"
+        install_command: "pip install --upgrade --user"
   - name: "go"
     version: "latest"
     packages:
