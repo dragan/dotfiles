@@ -23,6 +23,40 @@
 {{-   end }}
 {{- end }}
 
+{{- if eq .chezmoi.os "linux" }}
+{{ $processor := output "uname" "-p" | trim }}
+[".local/bin/starship"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "starship/starship" (printf "starship-%s-*-%s-*.tar.gz" $processor .chezmoi.os) | quote }}
+    executable = true
+    path = "starship"
+[".local/bin/fzf"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "junegunn/fzf" (printf "fzf-*-%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote  }}
+    executable = true
+    path = "fzf"
+[".local/bin/lazygit"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "lazygit_*_Linux_%s.tar.gz" $processor) | quote }}
+    executable = true
+    path = "lazygit"
+[".local/bin/gdu"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "dundee/gdu" (printf "gdu_%s_%s.tgz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    path = {{ (printf "gdu_%s_%s" .chezmoi.os .chezmoi.arch) | quote }}
+[".local/bin/age"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "FiloSottile/age" (printf "age-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    path = "age/age"
+[".local/bin/age-keygen"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "FiloSottile/age" (printf "age-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    path = "age/age-keygen"
+{{- end }}
+
 [".local/share/zinit/zinit"]
   type = "git-repo"
   url = "https://github.com/zdharma-continuum/zinit.git"
