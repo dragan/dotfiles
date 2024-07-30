@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+# Requires logout/reboot to take effect
+if [ $SHELL = "/usr/bin/zsh" ]; then
+  echo "Already using zsh"
+  exit 0
+else
+  chsh -s /usr/bin/zsh
+fi
+

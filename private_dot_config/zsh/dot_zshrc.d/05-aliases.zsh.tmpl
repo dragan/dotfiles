@@ -5,6 +5,8 @@
 alias cz="chezmoi"
 {{- end }}
 
+alias c="clear"
+
 # Tools
 
 # Neovim
@@ -31,11 +33,15 @@ alias lzg="lazygit"
 # Replace find with fd
 {{- if lookPath "fd" }}
 alias find="fd"
+{{- else if lookPath "fdfind" }}
+alias fd="fdfind"
 {{- end }}
 
 # Replace cat with bat
 {{- if lookPath "bat" }}
 alias cat="bat"
+{{- else if lookPath "batcat" }}
+alias cat="batcat"
 {{- end }}
 
 # Lazy Git
@@ -52,7 +58,11 @@ alias ls="eza -lh --group-directories-first --icons"
 alias lsa="ls -a"
 alias lt="eza --tree --level=2 --long --icons --git"
 alias lta="lt -a"
+{{- if lookPath "bat" }}
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+{{- else if lookPath "batcat" }}
+alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
+{{- end }}
 
 # Directories
 alias ..="cd .."

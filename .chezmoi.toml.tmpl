@@ -2,5 +2,16 @@
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
 {{- "" -}}
 
+{{- $osID := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+{{/* detect Headless VMs */}}
+{{- if eq .chezmoi.username "root" "ubuntu" -}}
+{{-   $headless = true -}}
+{{- end -}}
+
 [data]
-  headless = false
+  headless = {{ $headless }}
+  osid = {{ $osID | quote }}
