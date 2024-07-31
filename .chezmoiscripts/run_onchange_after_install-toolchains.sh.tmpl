@@ -6,6 +6,8 @@
 bash -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" -- --no-modify-path -y
 . "$HOME/.cargo/env"
 rustup component add rust-analyzer
+rustup completions zsh rustup >"${HOME}/.local/share/zsh/site-functions/_rustup"
+rustup completions zsh cargo >"${HOME}/.local/share/zsh/site-functions/_cargo"
 {{- else }}
 mise use --global --yes {{ $toolchain.name }}@{{ $toolchain.version }}
 {{- end }}
