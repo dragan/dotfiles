@@ -1,0 +1,61 @@
+{{ if eq .osid "linux-ubuntu" -}}
+
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{ $sudo = "" -}}
+{{ end -}}
+
+#!/usr/bin/env bash
+
+# Exit on error
+set -eufo pipefail
+
+cd /tmp
+wget -O nvim.tar.gz "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"
+tar -xf nvim.tar.gz
+{{ $sudo }}install nvim-linux64/bin/nvim /usr/local/bin/nvim
+{{ $sudo }}cp -R nvim-linux64/lib /usr/local/
+{{ $sudo}}cp -R nvim-linux64/share /usr/local/
+rm -rf nvim-linux64 nvim.tar.gz
+cd -
+
+# Retrieve external debs
+{{ $sudo }}install -dm 755 /etc/apt/keyrings
+
+# mise en place
+wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | {{ $sudo }}tee /etc/apt/keyrings/mise-archive-keyring.gpg 1>/dev/null
+echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | {{ $sudo }}tee /etc/apt/sources.list.d/mise.list
+
+# eza
+wget -qO - https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | gpg --dearmor | {{ $sudo }}tee /etc/apt/keyrings/gierens.gpg 1>/dev/null
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | {{ $sudo }}tee /etc/apt/sources.list.d/gierens.list
+
+# Docker
+# Uninstall older versions
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+
+# Add Docker's official GPG key:
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install ca-certificates curl
+{{ $sudo }}install -m 0755 -d /etc/apt/keyrings
+{{ $sudo }}curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+{{ $sudo }}chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
+  {{ $sudo }}tee /etc/apt/sources.list.d/docker.list >/dev/null
+{{ $sudo }}apt-get update
+
+# Create a docker group
+{{ $sudo }}getent group docker || {{ $sudo }}groupadd docker
+
+# Add current user to group
+{{ $sudo }}usermod -aG docker $USER
+
+# Run updates and install supplied packages
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install -y {{ .packages.linux | join " " }}
+
+{{ end -}}

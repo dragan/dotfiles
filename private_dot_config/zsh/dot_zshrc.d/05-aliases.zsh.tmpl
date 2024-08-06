@@ -5,6 +5,8 @@
 alias cz="chezmoi"
 {{- end }}
 
+alias c="clear"
+
 # Tools
 
 # Neovim
@@ -31,16 +33,25 @@ alias lzg="lazygit"
 # Replace find with fd
 {{- if lookPath "fd" }}
 alias find="fd"
+{{- else if lookPath "fdfind" }}
+alias fd="fdfind"
 {{- end }}
 
 # Replace cat with bat
 {{- if lookPath "bat" }}
 alias cat="bat"
+{{- else if lookPath "batcat" }}
+alias cat="batcat"
 {{- end }}
 
 # Lazy Git
 {{- if lookPath "lazygit" }}
 alias lazygit="lazygit --use-config-file=\"${XDG_CONFIG_HOME}/lazygit/config.yml,${XDG_CONFIG_HOME}/lazygit/themes/catppuccin/themes-mergable/mocha/blue.yml\""
+{{- end }}
+
+# Lazy Docker
+{{- if and (eq .chezmoi.os "linux") (lookPath "lazydocker")}}
+alias lzd="lazydocker"
 {{- end }}
 
 # File system
@@ -52,7 +63,11 @@ alias ls="eza -lh --group-directories-first --icons"
 alias lsa="ls -a"
 alias lt="eza --tree --level=2 --long --icons --git"
 alias lta="lt -a"
+{{- if lookPath "bat" }}
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+{{- else if lookPath "batcat" }}
+alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
+{{- end }}
 
 # Directories
 alias ..="cd .."

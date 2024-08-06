@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+# Requires logout/reboot to take effect
+echo "Changing shell for user: ${USER}"
+{{ if lookPath "zsh" }}
+sudo usermod --shell "$(command -v zsh)" ${USER}
+{{ end }}

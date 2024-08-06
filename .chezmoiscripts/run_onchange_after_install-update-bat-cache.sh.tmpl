@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+{{- if lookPath "bat" }}
+bat cache --build
+{{- else if lookPath "batcat" }}
+batcat cache --build
+{{- end }}
