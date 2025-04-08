@@ -17,7 +17,7 @@ trap 'rm -rf -- "${temp_dir}"' EXIT
 trap 'exit' INT TERM
 
 cd $temp_dir
-alacritty_version="v0.14.0"
+alacritty_version="v0.15.1"
 alacritty_dmg="Alacritty-${alacritty_version}.dmg"
 url="https://github.com/alacritty/alacritty/releases/download/${alacritty_version}/${alacritty_dmg}"
 echo "Downloading alacritty ${alacritty_version} to: ${temp_dir} ..."
