@@ -11,6 +11,9 @@ fpath+=("{{ output "/opt/homebrew/bin/brew" "--prefix" | trim }}/share/zsh/site-
 # https://docs.brew.sh/Analytics
 export HOMEBREW_NO_ANALYTICS=1
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Set Alacritty in PATH
+export PATH="${PATH}:${HOME}/Applications/Alacritty.app/Contents/MacOS"
 {{ end -}}
 
 # Set the GPG_TTY to be the same as the TTY
