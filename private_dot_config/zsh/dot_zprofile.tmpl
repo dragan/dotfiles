@@ -16,6 +16,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="${PATH}:${HOME}/Applications/Alacritty.app/Contents/MacOS"
 {{ end -}}
 
+{{ if stat "/opt/nvim" -}}
+export PATH="${PATH}:/opt/nvim/bin"
+{{ end -}}
+
 # Set the GPG_TTY to be the same as the TTY
 # Either via the env var or via the tty command
 if [ -n "$TTY" ]; then
