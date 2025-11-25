@@ -37,7 +37,7 @@
     path = "fzf"
 [".local/bin/lazygit"]
     type = "archive-file"
-    url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "lazygit_*_Linux_%s.tar.gz" $processor) | quote }}
+    url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "lazygit_*_linux_%s.tar.gz" $processor) | quote }}
     executable = true
     path = "lazygit"
 [".local/bin/gdu"]
