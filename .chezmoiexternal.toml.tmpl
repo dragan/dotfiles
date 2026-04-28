@@ -6,17 +6,15 @@
   stripComponents = 1
   include = ["*/*.toml"]
   refreshPeriod = "168h"
+{{- end }}
 
-{{-    $fontDir := "" }}
-{{-   if eq .chezmoi.os "darwin" }}
-{{-     $fontDir = "Library/Fonts" }}
-{{-   end }}
-{{    range (list
+{{- if and (not .headless) (eq .chezmoi.os "darwin") }}
+{{   range (list
         "IosevkaNerdFont-Regular.ttf"
         "IosevkaNerdFont-Bold.ttf"
         "IosevkaNerdFont-Italic.ttf"
         "IosevkaNerdFont-BoldItalic.ttf") }}
-["{{ $fontDir }}/{{ . }}"]
+["Library/Fonts/{{ . }}"]
   type = "file"
   url = "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/{{ . }}"
   refreshPeriod = "168h"
