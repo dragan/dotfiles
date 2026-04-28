@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+{{ range .toolchains -}}
+{{- if eq .name "python" -}}
+{{- $toolchain := . }}
+mise use --global --yes {{ $toolchain.name }}@{{ $toolchain.version }}
+{{ range $toolchain.packages -}}
+mise exec {{ $toolchain.name }} -- {{ .install_command }} {{ .name }}
+{{ end -}}
+{{- end }}
+{{ end -}}

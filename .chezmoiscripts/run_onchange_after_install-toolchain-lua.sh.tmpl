@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+{{ range .toolchains -}}
+{{- if eq .name "lua" -}}
+{{- $toolchain := . }}
+mise use --global --yes {{ $toolchain.name }}@{{ $toolchain.version }}
+{{- end }}
+{{ end -}}
